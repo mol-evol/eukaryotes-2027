@@ -1,0 +1,13 @@
+database	clade	reported_mode
+TOLDBA	Alphaproteobacteria	0.101988
+TOLDBA	Asgardarchaeota	0.187414
+TOLDBA	Myxococcota	0.114805
+TOLDBA	Planctomycetota	0.139354
+TOLDBB	Alphaproteobacteria	0.095502
+TOLDBB	Asgardarchaeota	0.153451
+TOLDBB	Myxococcota	0.088137
+TOLDBB	Planctomycetota	0.096095
+TOLDBC	Alphaproteobacteria	0.099472
+TOLDBC	Asgardarchaeota	0.201234
+TOLDBC	Myxococcota	0.101901
+TOLDBC	Planctomycetota	0.126424

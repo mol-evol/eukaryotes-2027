@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# Derived data (rebuild from the Zenodo deposit via the builder scripts)
+data/*.pkl
+
+# KEGG KO table — not redistributable; download from https://rest.kegg.jp/list/ko
+data/ko_list.txt
+
+# Builder inputs (download separately: Zenodo deposit + NCBI COG table)
+mLECA_OGs/
+trees_full/
+LECA_origins/
+cog-20.def.tab
