@@ -1,12 +1,16 @@
-# INPUT: the deposited Zenodo 13897946 data. Set DEPOSIT to its mLECA_OGs path.\n# This is a BUILDER (regenerates data/*.pkl); the figure scripts run from the bundled data/ without it.\n
+#!/usr/bin/env python3
+"""BUILDER: regenerate data/master.pkl from the deposited data (Zenodo 13897946).
+The figure scripts run from the bundled data/ and do NOT need this.
+  EX      = unpacked mLECA_OGs folder (contains annotations/ and LECA_origins/)
+  COG_DEF = NCBI cog-20.def.tab (ftp.ncbi.nih.gov/pub/COG/COG2020/data/)"""
 import csv, sys
-EX="/sessions/charming-modest-babbage/work/ex/mLECA_OGs"
-GAB="/tmp/gab"
+EX="mLECA_OGs"               # <-- unpacked Zenodo mLECA_OGs folder
+COG_DEF="cog-20.def.tab"     # <-- NCBI COG definitions table
 csv.field_size_limit(1<<30)
 
 # COG -> category letters
 cog2cat={}
-for r in csv.reader(open(f"{GAB}/cog-20.def.tab",encoding='latin-1'),delimiter='\t'):
+for r in csv.reader(open(COG_DEF,encoding='latin-1'),delimiter='\t'):
     if len(r)>=2: cog2cat[r[0]]=r[1]
 INFO=set("JAKLB")   # information storage & processing
 # operational = metabolism + cellular processing (exclude R,S poorly characterized)
@@ -40,7 +44,7 @@ for db in "ABC":
 for d in rows:
     d['cats']=cog2cat.get(d['COG'],'')
 import pickle
-pickle.dump(rows,open("master.pkl","wb"))
+pickle.dump(rows,open("data/master.pkl","wb"))
 print("total families (rows):", len(rows))
 from collections import Counter
 print("per db:", Counter(d['db'] for d in rows))

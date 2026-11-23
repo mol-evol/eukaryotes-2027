@@ -1,7 +1,10 @@
-# INPUT: the deposited Zenodo 13897946 data. Set DEPOSIT to its mLECA_OGs path.\n# This is a BUILDER (regenerates data/*.pkl); the figure scripts run from the bundled data/ without it.\n
+#!/usr/bin/env python3
+"""BUILDER: regenerate data/lgt_{A,B,C}.pkl (euk / baseline nearest-neighbour counts)
+from the deposited gene trees (Zenodo 13897946). The figure scripts run from the
+bundled data/ and do NOT need this. Set TF to the gene-tree folder."""
 import pickle, sys, random, fig1a
-sp2,prok=pickle.load(open("tax.pkl","rb"))
-TF="/sessions/charming-modest-babbage/work/trees_full"
+sp2,prok=pickle.load(open("data/tax.pkl","rb"))
+TF="trees_full"             # <-- deposited gene-tree folder (TOLDB{A,B,C}.nwk)
 random.seed(1)
 def anc(x,par):
     a=[]
@@ -66,5 +69,5 @@ for line in open(f"{TF}/TOLDB{db}.nwk"):
         for ph in present:
             if ph!=f: base_avail[ph]+=1
         if nb: base_chosen[nb]+=1
-pickle.dump(dict(ec=euk_chosen,ea=euk_avail,bc=base_chosen,ba=base_avail),open(f"lgt_{db}.pkl","wb"))
+pickle.dump(dict(ec=euk_chosen,ea=euk_avail,bc=base_chosen,ba=base_avail),open(f"data/lgt_{db}.pkl","wb"))
 print(f"db {db}: euk assignments={sum(euk_chosen.values())} baseline assignments={sum(base_chosen.values())}")

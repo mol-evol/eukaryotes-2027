@@ -5,6 +5,9 @@ __pycache__/
 # macOS
 .DS_Store
 
+# Dropbox conflicted copies
+*conflicted copy*
+
 # Derived data (rebuild from the Zenodo deposit via the builder scripts)
 data/*.pkl
 

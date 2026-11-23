@@ -1,7 +1,11 @@
-# INPUT: the deposited Zenodo 13897946 data. Set DEPOSIT to its mLECA_OGs path.\n# This is a BUILDER (regenerates data/*.pkl); the figure scripts run from the bundled data/ without it.\n
+#!/usr/bin/env python3
+"""Helper + BUILDER: newick parser, species->taxon map, and the Fig 1a nearest-phylum
+counts from the deposited gene trees (Zenodo 13897946). Imported by the other builders.
+The figure scripts run from the bundled data/ and do NOT need the trees. Set EX to the
+deposited LECA_origins folder."""
 import pickle, re, sys, time
 sp2,prok_phyla=pickle.load(open("data/tax.pkl","rb"))
-EX="/sessions/charming-modest-babbage/work/ex/mLECA_OGs/LECA_origins"
+EX="LECA_origins"           # <-- deposited LECA_origins folder (gene trees)
 NHX=re.compile(r'\[&&NHX[^\]]*\]')
 def get_sp(h):
     if h.count('_')>1 and '.' not in h: return h.rsplit('_',1)[0]
